@@ -3,6 +3,7 @@
       - the plus sign on line 15
       - the plus sign on line 19
       - the += signs on lines 25 and 26
+      	- if doing a non-commutative op, line 26 should be ret = segTree[--r] OP ret
   * NOTE: query range is inclusive-exclusive: ie. [a, b)
 */
 struct SegmentTree {
