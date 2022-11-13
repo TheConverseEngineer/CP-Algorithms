@@ -10,7 +10,7 @@ struct DSU {
 		if (a == b) return false;
 		if (size[a] > size[b]) swap(a, b);
 		size[a] += size[b];
-    size[b] = a;
+    		size[b] = a;
 		return true;
 	}
 };
