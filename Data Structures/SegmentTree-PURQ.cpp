@@ -19,7 +19,7 @@ struct SegmentTree {
 		for (int i{n}; i < 2*n; i++) segTree[i] = values[i-n];
   		for (int i{n - 1}; i > 0; i--) segTree[i] = segTree[i<<1] + segTree[i<<1|1];
 	}
-	void setValue(int pos, int value) { 
+	void update(int pos, int value) { 
   		for (segTree[pos += n] = value; pos > 1; pos >>= 1) segTree[pos>>1] = segTree[pos] + segTree[pos^1];
 	}
 	int query(int l, int r) {
