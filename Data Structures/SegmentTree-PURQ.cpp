@@ -1,9 +1,9 @@
-/** Implementation of a simple segment tree that supports adition by default
+/** Implementation of a simple segment tree that supports addition by default
   * To change the function, replace the following:
-      - the plus sign on line 15
-      - the plus sign on line 19
-      - the += signs on lines 25 and 26
-      	- if doing a non-commutative op, line 26 should be ret = segTree[--r] OP ret
+      - the plus sign on line 20
+      - the plus sign on line 23
+      - the += signs on lines 28 and 29
+      	- if doing a non-commutative op, refer to https://codeforces.com/blog/entry/18051
   * NOTE: query range is inclusive-exclusive: ie. [a, b)
 */
 struct SegmentTree {
