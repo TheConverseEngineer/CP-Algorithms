@@ -1,33 +1,23 @@
 /** Implementation of a simple segment tree that supports addition by default
-  * To change the function, replace the following:
-      - the plus sign on line 20
-      - the plus sign on line 23
-      - the += signs on lines 28 and 29
-      	- if doing a non-commutative op, refer to https://codeforces.com/blog/entry/18051
-  * NOTE: query range is inclusive-exclusive: ie. [a, b)
+  * The combiner function can be replaced with any associative operation.
+  * If using a function like max, make sure that line 16's defaults are updated as needed.
+  * NOTE: query range is inclusive-exclusive: ie. [l, r)
 */
-struct SegmentTree {
-	int n; 
-	vector<int> segTree;
-	SegmentTree(int _n) {
-		n = _n;
-		segTree.assign(2*n, 0);
+template <class T, int n> struct SegmentTree {
+	T comb(T a, T b) { return a+b; }
+	T s[2*n] = {};
+	void buildFullTree() {
+		for (int i = n-1; i > 0; i--) s[i] = comb(s[i<<1], s[i<<1|1]);
 	}
-	SegmentTree(const vector<int>& values) {
-		n = values.size();
-		segTree.assign(2*n, 0);
-		for (int i{n}; i < 2*n; i++) segTree[i] = values[i-n];
-  		for (int i{n - 1}; i > 0; i--) segTree[i] = segTree[i<<1] + segTree[i<<1|1];
+	void update(int pos, T val) {
+		for (s[pos += n] = val; pos /= 2;) s[pos] = comb(s[pos<<1], s[pos<<1|1]);
 	}
-	void update(int pos, int value) { 
-  		for (segTree[pos += n] = value; pos > 1; pos >>= 1) segTree[pos>>1] = segTree[pos] + segTree[pos^1];
-	}
-	int query(int l, int r) {
-  		int ret = 0;
-  		for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    		if (l&1) ret += segTree[l++];
-    		if (r&1) ret += segTree[--r];
-  		}
-  		return ret;
+	T query(int l, int r) { // query [ b , e)
+		T resL = 0, resR = 0;
+		for (l += n, r += n; l < r; l /= 2, r /= 2) {
+			if (l&1) resL = comb(resL, s[l++]);
+			if (r&1) resR = comb(s[--r], resR);
+		}
+		return comb(resL, resR);
 	}
 };
