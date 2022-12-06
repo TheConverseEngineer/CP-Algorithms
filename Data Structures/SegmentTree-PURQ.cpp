@@ -12,7 +12,7 @@ template <class T, int n> struct SegmentTree {
 	void update(int pos, T val) {
 		for (s[pos += n] = val; pos /= 2;) s[pos] = comb(s[pos<<1], s[pos<<1|1]);
 	}
-	T query(int l, int r) { // query [ b , e)
+	T query(int l, int r) { 
 		T resL = 0, resR = 0;
 		for (l += n, r += n; l < r; l /= 2, r /= 2) {
 			if (l&1) resL = comb(resL, s[l++]);
