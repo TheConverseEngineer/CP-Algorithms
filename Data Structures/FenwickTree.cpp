@@ -2,6 +2,7 @@
  * and can be swapped for other associative operations (requires inverse for non-prefix queries)
  * NOTE: one-indexed by default
  * int can be easily substituted for other types by changing line 7
+ * queries of type [l, r]
  * */
 template <int n> struct FenwickTree {
     int BIT[n+1] = {};  // binary indexed tree
