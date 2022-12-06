@@ -2,8 +2,8 @@
 // par[root] = -1
 // Note that tAdj represents the adjacency list, and will be emptied during construction
 
-set<int> tAdj[15];
-int par[15], subsz[15];
+set<int> tAdj[MAX_N];
+int par[MAX_N], subsz[MAX_N];
 
 int subSz(int u, int p) {
 	subsz[u] = 1;
