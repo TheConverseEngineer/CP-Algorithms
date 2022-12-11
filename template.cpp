@@ -10,6 +10,7 @@ template <class T> using Tree = tree<T, null_type, less<T>,rb_tree_tag, tree_ord
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef vector<int> vi;
+template <class T> bool ckmax(T&a, const T& b) { return a < b ? a = b, 1 : 0;}
 
 int main() {
 	cin.tie(0)->sync_with_stdio(0);
